@@ -3,7 +3,7 @@ class Card:
         self.r = rank
         self.s = suit
 
-    def show(self):
+    def Show(self):
         if (self.r < 10):
             outr = ' ' + str(self.r)
         elif (self.r == 10):
@@ -19,3 +19,9 @@ class Card:
         else:
             print("Rank Error")
         print(outr + self.s)
+
+    def GetRank(self):
+        return self.r
+    def GetSuit(self):
+        return self.s
+
