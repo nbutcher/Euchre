@@ -18,7 +18,7 @@ class Card:
             outr = ' A'
         else:
             print("Rank Error")
-        print(outr + self.s)
+        return outr + self.s
 
     def GetRank(self):
         return self.r
