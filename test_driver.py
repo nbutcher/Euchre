@@ -1,6 +1,6 @@
 import Card
 import Deck
-from Functions import Deal,ShowHand
+from Functions import Deal,ShowHand,ShowPlay,FirstPassCall
 
 a = Card.Card(2,'C')
 b = Card.Card(12,'S')
@@ -26,3 +26,5 @@ hands, upcard = Deal(edeck)
 print(upcard.Show())
 for i in hands:
     print(ShowHand(i))
+print("Call test\n")
+FirstPassCall(1,1,hands,upcard,[0,0],0)

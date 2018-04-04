@@ -25,3 +25,15 @@ class Card:
     def GetSuit(self):
         return self.s
 
+    def SameColor(self,otherCard):
+        if (self.s == 'H' and otherCard.GetSuit() == 'D'):
+            return 1
+        elif (self.s == 'D' and otherCard.GetSuit() == 'H'):
+            return 1
+        elif (self.s == 'C' and otherCard.GetSuit() == 'S'):
+            return 1
+        elif (self.s == 'S' and otherCard.GetSuit() == 'C'):
+            return 1
+        else:
+            return 0
+
