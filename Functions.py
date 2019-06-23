@@ -38,6 +38,55 @@ def ShowPlay(cards):
     print(s3 + '\n')
     return
 
+def HandCheck(myhand, upsuit):
+    """Function to check if the computer player would want to call trump
+    for the input suit. This does not have any adjustments for the upcard
+    or who is dealing. Just the provided hand."""
+    
+    points = 0
+    trump_count = 0
+    crank = []
+    csuit = []
+    counts = {"S":0,"C":0,"H":0,"D":0}
+    for c in myhand:
+        crank.append(c.GetRank())
+        csuit.append(c.GetSuit())
+        counts[c.GetSuit()] += 1
+    #print(counts)
+    
+    
+    #suits = [0,0,0,0] #Track number of suits in hand
+    for i in range(0,len(myhand)):
+        if (csuit[i] == upsuit): #Would be trump
+            if (crank == 11): #Jack
+                points += 100.
+            elif (crank == 14):
+                points += 60.
+            elif (crank == 13):
+                points += 50.
+            else:
+                points += 35.
+       
+        # Now check for left
+        elif (myhand[i].SameColor(upcard) and crank == 11):
+            points += 75.
+            
+        # Now we should check for high off cards
+        elif (crank == 14):
+            points += 50.
+        elif (crank == 13):
+            points += 10.
+    numsuits = 0
+    suits = ["S","C","H","D"]
+    for item in suits:
+        if (counts[item] > 0):
+            numsuits += 1
+    if (numsuits == 1):
+        points += 300
+    if (numsuits == 2) > 0
+
+
+
 def FirstPassCall(pos,dealpos,hands,upcard,scores,aggro):
     """Function to call trump on the first pass (with upcard). Position is
     0 for player, 1 for left of player, 2 for partner, and 3 for right of 
@@ -51,32 +100,9 @@ def FirstPassCall(pos,dealpos,hands,upcard,scores,aggro):
     upsuit = upcard.GetSuit()
     uprank = upcard.GetRank()
     myhand = hands[pos]
-    points = 0
-    trump_count = 0
-    crank = []
-    csuit = []
-    counts = {"S":0,"C":0,"H":0,"D":0}
-    for c in myhand:
-        crank.append(c.GetRank())
-        csuit.append(c.GetSuit())
-        counts[c.GetSuit()] += 1
-    #print(counts)
     if (pos != dealpos and counts[upsuit] == 0):
         return 0
-    
-    for i in range(0,len(myhand)):
-        if (csuit[i] == upsuit): #Would be trump
-            if (crank == 11): #Jack
-                points += 100.
-            elif (crank == 14):
-                points += 60.
-            elif (crank == 13):
-                points += 50.
-            else:
-                points += 35
-       
-        # Now check for left
-        elif (myhand[i].SameColor(upcard) and crank == 11):
-            points += 75
-            
+    HERE = HandCheck[myhand,upsuit] 
+
         
+
